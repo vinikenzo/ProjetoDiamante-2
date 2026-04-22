@@ -25,6 +25,7 @@ public class UserService {
     public NewUserResponse newUser(NewUserRequest dto){
         User user = new User();
         user.setNome(dto.nome());
+        user.setLocalizacao(dto.location());
 
         userRepository.save(user);
         log.info("Usuário cadastrado com sucesso. Nome do usuário: {} Id do usuário: {}", user.getNome(), user.getId());
