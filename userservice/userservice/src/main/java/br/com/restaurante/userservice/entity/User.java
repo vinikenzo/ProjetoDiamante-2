@@ -1,19 +1,17 @@
 package br.com.restaurante.userservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @RequiredArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Table(name = "USUARIO_PROJETODIAMANTE")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +23,6 @@ public class User {
 
     private String tipoComidaFavorita;
 
-    private String precoDispostoAPagar;
+    private BigDecimal precoDispostoAPagar;
 }
 
