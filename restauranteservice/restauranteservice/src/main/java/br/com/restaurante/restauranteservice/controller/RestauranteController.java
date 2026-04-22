@@ -17,4 +17,10 @@ public class RestauranteController {
     public ResponseEntity<?> getRestaurantRecommendations(@RequestBody RestaurantRecommendationsRequest dto){
         return new ResponseEntity<>(restauranteService.getResturantRecommendations(dto.location(), dto.category(), dto.minRating()), HttpStatus.OK);
     }
+
+    @GetMapping
+    public ResponseEntity<?> listarRestaurantes(){
+        var restaurantes = restauranteService.listarRestaurantes();
+        return ResponseEntity.ok(restaurantes);
+    }
 }
