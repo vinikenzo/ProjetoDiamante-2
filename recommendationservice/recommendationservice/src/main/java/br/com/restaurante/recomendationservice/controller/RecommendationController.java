@@ -1,5 +1,6 @@
 package br.com.restaurante.recomendationservice.controller;
 
+import br.com.restaurante.recomendationservice.dto.AIResponseDto;
 import br.com.restaurante.recomendationservice.service.RecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ public class RecommendationController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<?> getRecommendation(@PathVariable Long userId){
-        String aiResponse = recommendationService.generateRecommendation(userId);
+        AIResponseDto aiResponse = recommendationService.generateRecommendation(userId);
         return ResponseEntity.ok(aiResponse);
     }
 }

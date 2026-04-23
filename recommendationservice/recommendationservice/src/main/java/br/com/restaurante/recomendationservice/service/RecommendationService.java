@@ -1,5 +1,6 @@
 package br.com.restaurante.recomendationservice.service;
 
+import br.com.restaurante.recomendationservice.dto.AIResponseDto;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.core.ParameterizedTypeReference;
@@ -24,7 +25,7 @@ public class RecommendationService {
     record RestaurantData(String nome, Double averagePrice, Double rating) {}
     record SearchRequestDto(String location, String category, Double minRating) {}
 
-    public String generateRecommendation(Long userId) {
+    public AIResponseDto generateRecommendation(Long userId) {
         UserData user = restClient.get()
                 .uri("http://userservice/users/" + userId)
                 .retrieve()
@@ -65,9 +66,9 @@ public class RecommendationService {
             Responda exclusivamente em português do Brasil.
             """, userPreferencesText, availableRestaurantsText);
 
-        return chatClient.prompt()
+        return new AIResponseDto(chatClient.prompt()
                 .user(promptText)
                 .call()
-                .content();
+                .content());
     }
 }
